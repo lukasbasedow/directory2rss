@@ -6,11 +6,12 @@ from flask import Flask, request
 import PyRSS2Gen
 import datetime
 from urllib.parse import unquote
+from configparser import ConfigParser
 
 app = Flask(__name__)
 
 def get_entries(url, verify):
-    content  = requests.get(url, verify=verify)
+    content  = requests.get(url, verify=verify, auth=(auth_user, auth_password))
     soup = BeautifulSoup(content.text, "lxml")
     rows = soup.find_all("tr")
     entries = []
@@ -62,4 +63,8 @@ def get_data():
 
 if __name__ == "__main__":
 
-    app.run(debug=True)
+    config = ConfigParser()
+    config.read('config.ini')
+    auth_user = config.get('auth', 'user')
+    auth_password = config.get('auth', 'password')
+    app.run(host='0.0.0.0')
