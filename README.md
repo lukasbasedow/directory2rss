@@ -52,6 +52,7 @@ To read a feed of `https://example.com/some_directory` just add `http://localhos
 
 /etc/systemd/system/dir2rss.service
 
+```
 [Unit]
 Description=dir2rss service
 After=network.target
@@ -67,6 +68,7 @@ ExecStart=/usr/bin/python3 /path/directory2rss/d2rss.py
 
 [Install]
 WantedBy=multi-user.target
+```
 
 ### Screenshot
 
