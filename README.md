@@ -48,6 +48,26 @@ To set authentication credentials edit the config.ini in section auth.
 
 To read a feed of `https://example.com/some_directory` just add `http://localhost:5000/?url=https://example.com/some_directory` to your feed reader.
 
+### Service
+
+/etc/systemd/system/dir2rss.service
+
+[Unit]
+Description=dir2rss service
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+WorkingDirectory=/path/directory2rss/
+Restart=always
+RestartSec=1
+User=root
+ExecStart=/usr/bin/python3 /path/directory2rss/d2rss.py
+
+[Install]
+WantedBy=multi-user.target
+
 ### Screenshot
 
 ![directory2rss on firefox and akregator](https://github.com/jklmnn/directory2rss/raw/master/d2rss.png)
@@ -69,3 +89,4 @@ usage: d2dl.py [-h] [--recursive] [--noverify] [--quote] [--curl]
  - `--quote` print urls in quote for shell use
  - `--curl` call curl on each url if it is a file
  - `--match` only use urls that match a given regular expression, the expression must match the whole link including hostname and protocol
+
