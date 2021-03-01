@@ -42,6 +42,8 @@ http://localhost:5000/?url=<directory url>[&noverify=yes]
 
 If `noverify` is added and set to `yes` HTTPS connections will not be verified.
 
+To set authentication credentials edit the config.ini in section auth.
+
 ### Example
 
 To read a feed of `https://example.com/some_directory` just add `http://localhost:5000/?url=https://example.com/some_directory` to your feed reader.
